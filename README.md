@@ -36,7 +36,7 @@ This template was created for weekly AI innovation communication at a law firm. 
 - **Monospace Footer** - Geeky terminal-style commands on Deep Eggplant background
 - **Generous Whitespace** - Professional spacing between all elements
 
-### "Bold Magazine" Design ⭐ NEWEST!
+### "Bold Magazine" Design
 - **Cross-Hatch Background** - Sega Master System-inspired pattern across entire newsletter (VML fallback)
 - **Alternating Zig-Zag Cards** - 80% width cards that alternate left/right alignment
 - **Diagonal Accent Elements** - Bold triangular corners and diagonal stripes
@@ -45,6 +45,15 @@ This template was created for weekly AI innovation communication at a law firm. 
 - **Gradient Buttons & Badges** - Dual-color gradients with prominent shadows
 - **Magazine-Style Layout** - Confident, asymmetric design with pattern overlays
 - **Bold Checkmarks** - Gradient-filled 24px squares with dramatic shadows
+
+### "Bold Magazine v2" - Ultra-Compact Edition ⭐ NEWEST!
+- **Single-Line Header Bar** - Compact 60px header with GenEmoji circle and title on same line
+- **ASCII Line Art Borders** - Six different handcrafted border styles framing each card
+- **Larger Sega Grid** - 40px grid boxes with 15% opacity purple lines (unfilled interiors)
+- **Ultra-Tight Spacing** - Only 8px between cards, 12px internal padding for maximum density
+- **Miniaturized Footer** - Compact 15px padding with tighter line spacing
+- **Same Bold Typography** - Maintains 900 weight headings and gradient elements
+- **Magazine Handcraft Feel** - ASCII borders add artisanal, hand-drawn quality
 
 ## Quick Start (For Non-Coders)
 
@@ -66,7 +75,8 @@ next-gen-newsletter/
 │   ├── issue-001-launch.html           # Basic template sample
 │   ├── issue-advanced-sample.html      # All 7 features demo
 │   ├── issue-stylish-sample.html       # "Playful Precision" redesign
-│   └── issue-bold-sample.html (NEW!)   # "Bold Magazine" design
+│   ├── issue-bold-sample.html          # "Bold Magazine" design
+│   └── issue-bold-v2-sample.html (NEW!) # "Bold Magazine v2" ultra-compact
 ├── docs/                          # How-to guides
 │   ├── editing-guide.md               # Non-coder editing instructions
 │   ├── testing-guide.md               # Cross-client testing guide
@@ -116,7 +126,7 @@ next-gen-newsletter/
 - Monospace terminal footer on Deep Eggplant
 - **→ Polished and professional**
 
-**Bold Sample** (`examples/issue-bold-sample.html`) ⭐ NEWEST!
+**Bold Sample** (`examples/issue-bold-sample.html`):
 - **"Bold Magazine" design with maximum visual impact**
 - Cross-hatch background pattern (Sega Master System-inspired)
 - 80% width cards alternating left/right in zig-zag layout
@@ -126,6 +136,16 @@ next-gen-newsletter/
 - Tighter 15px spacing creates dynamic vertical rhythm
 - Pattern overlays and confident asymmetric design
 - **→ Most distinctive, attention-grabbing design**
+
+**Bold v2 Sample** (`examples/issue-bold-v2-sample.html`) ⭐ NEWEST!
+- **Ultra-compact refinement of Bold Magazine aesthetic**
+- Single-line header bar (60px) with GenEmoji circle and title inline
+- Six unique ASCII line art border styles (╔═╗, ┏━┓, ╭─╮, ┌─┐, ┎─┒, ▛▀▜)
+- Larger 40px Sega-style grid with 15% opacity purple lines
+- Ultra-tight spacing: 8px between cards, 12px internal padding
+- Maintains 900 weight typography and gradient elements
+- Handcrafted magazine feel with maximum information density
+- **→ Most compact, artisanal design - stands out while saving vertical space**
 
 ### How to Use the Samples:
 
