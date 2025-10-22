@@ -43,7 +43,8 @@ next-gen-newsletter/
 │   ├── newsletter-template.html           # Basic template (original)
 │   └── newsletter-advanced-template.html  # Advanced features template (NEW!)
 ├── examples/                       # Sample newsletters with real content
-│   └── issue-001-launch.html
+│   ├── issue-001-launch.html           # Basic template sample
+│   └── issue-advanced-sample.html (NEW!) # All 7 features demo with placeholders
 ├── docs/                          # How-to guides
 │   ├── editing-guide.md               # Non-coder editing instructions
 │   ├── testing-guide.md               # Cross-client testing guide
@@ -68,6 +69,37 @@ next-gen-newsletter/
 - More visually striking
 - Better for standing out in crowded inboxes
 - Recommended once you're comfortable with basics
+
+## Sample Newsletters (Examples)
+
+**Basic Sample** (`examples/issue-001-launch.html`):
+- Filled with PC Grand Prix and Perkins Coin content
+- Uses original template structure
+- Good starting point for your first issue
+
+**Advanced Sample** (`examples/issue-advanced-sample.html`) ⭐ NEW!
+- **Complete visual prototype with all 7 features**
+- Ready to send for testing email clients
+- Demonstrates: Parallax hero, zig-zag cards, ribbons, edge-bands, tabs, flipbook
+- Uses placeholder images (via.placeholder.com)
+- **→ Open in browser to preview, or send to yourself to test**
+
+### How to Use the Advanced Sample:
+
+1. **Preview in browser:**
+   - Open `examples/issue-advanced-sample.html` in Chrome/Safari
+   - See how all features look together
+
+2. **Test in email clients:**
+   - Copy all HTML
+   - Paste into Outlook/Gmail compose window
+   - Send to yourself
+   - Check on desktop and mobile
+
+3. **Use as reference:**
+   - See exactly how each feature is implemented
+   - Copy components you want to use
+   - Replace placeholder content with yours
 
 ## Testing Checklist
 
