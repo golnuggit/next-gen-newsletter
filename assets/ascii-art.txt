@@ -1,0 +1,177 @@
+ASCII ART COLLECTION FOR NEWSLETTER
+====================================
+
+Use these in your newsletter template for visual variety.
+Copy and paste into the email HTML within <pre> tags.
+
+HEADERS / LOGOS
+===============
+
+Option 1 - AI DIGEST (current):
+ █████╗ ██╗    ██████╗ ██╗ ██████╗ ███████╗███████╗████████╗
+██╔══██╗██║    ██╔══██╗██║██╔════╝ ██╔════╝██╔════╝╚══██╔══╝
+███████║██║    ██║  ██║██║██║  ███╗█████╗  ███████╗   ██║
+██╔══██║██║    ██║  ██║██║██║   ██║██╔══╝  ╚════██║   ██║
+██║  ██║██║    ██████╔╝██║╚██████╔╝███████╗███████║   ██║
+╚═╝  ╚═╝╚═╝    ╚═════╝ ╚═╝ ╚═════╝ ╚══════╝╚══════╝   ╚═╝
+
+Option 2 - AI DIGEST (simpler):
+   _    ___   ____  _                 _
+  / \  |_ _| |  _ \(_) __ _  ___  ___| |_
+ / _ \  | |  | | | | |/ _` |/ _ \/ __| __|
+/ ___ \ | |  | |_| | | (_| |  __/\__ \ |_
+/_/   \_\___| |____/|_|\__, |\___||___/\__|
+                       |___/
+
+Option 3 - Simple box:
+╔═══════════════════════════════════════╗
+║        A I   D I G E S T              ║
+║   Your Weekly AI Innovation Report    ║
+╚═══════════════════════════════════════╝
+
+
+SECTION DIVIDERS
+================
+
+Style 1 - Solid line:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Style 2 - Double line:
+═════════════════════════════════════════════════════════════
+
+Style 3 - Dashed:
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+Style 4 - Dotted:
+· · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
+
+Style 5 - Stars:
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Style 6 - Arrows down:
+▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼
+
+Style 7 - Arrows up:
+▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲
+
+Style 8 - Box top:
+╔════════════════════════════════════════════════════════════╗
+
+Style 9 - Box bottom:
+╚════════════════════════════════════════════════════════════╝
+
+Style 10 - Wavy:
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+
+
+BOXES & FRAMES
+==============
+
+Simple box:
+┌─────────────────────────┐
+│  Your content here      │
+└─────────────────────────┘
+
+Double box:
+╔═════════════════════════╗
+║  Your content here      ║
+╚═════════════════════════╝
+
+Rounded box:
+╭─────────────────────────╮
+│  Your content here      │
+╰─────────────────────────╯
+
+
+ICONS / SYMBOLS
+===============
+
+Trophy: 🏆
+Coin: 🪙
+Lightbulb: 💡
+Star: ⭐ ✨
+Target: 🎯
+Books: 📚
+Rocket: 🚀
+Fire: 🔥
+Party: 🎉
+Thinking: 🤔
+Question: ❓
+Check: ✓ ✔
+Arrow right: → ➜ ⇒
+Arrow left: ← ⇐
+Arrow up: ↑ ⇑
+Arrow down: ↓ ⇓
+Bullet: • ◦ ▪ ▫
+
+
+TERMINAL STYLE
+==============
+
+Command prompt:
+$ your_command_here
+> output here
+
+Code block style:
+┌─[ command ]
+│ $ ls -la
+│ total 48
+│ drwxr-xr-x  8 user
+└─[ end ]
+
+Progress bar:
+[████████████████░░░░] 80%
+[▰▰▰▰▰▰▰▰▰▰▰▰▰▱▱] 87%
+
+
+FUN ELEMENTS
+============
+
+Winner announcement:
+     ___________
+    '._==_==_=_.'
+    .-\:      /-.
+   | (|:.     |) |
+    '-|:.     |-'
+      \::.    /
+       '::. .'
+         ) (
+       _.' '._
+      `"""""""`
+
+Small trophy:
+   ___
+  |   |
+   \"/
+    H
+   | |
+
+PC Grand Prix theme:
+   ___   ___
+  /   \ /   \
+ |  O  |  O  |  ← Racing wheels
+  \___/ \___/
+
+Newsletter seal:
+  ╔═════════════╗
+  ║  CERTIFIED  ║
+  ║ 100% HUMAN ║
+  ║   EDITED    ║
+  ╚═════════════╝
+
+
+HOW TO USE IN EMAIL
+===================
+
+1. Wrap ASCII art in <pre> tags
+2. Use monospace font: 'Courier New', Courier, monospace
+3. Set appropriate color (green for terminal, blue for dividers)
+4. Keep line-height: 1 or 1.2 to prevent spacing issues
+
+Example:
+<pre style="margin: 0; color: #00ff00; font-family: 'Courier New', monospace; line-height: 1;">
+YOUR ASCII ART HERE
+</pre>
+
+Note: Some email clients may render characters differently.
+Test on Outlook, iOS Mail, and Android before sending!
