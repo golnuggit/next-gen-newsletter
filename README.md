@@ -8,12 +8,23 @@ This template was created for weekly AI innovation communication at a law firm. 
 
 ## Key Features
 
+### Core Features
 - **ASCII Art Section Dividers** - Retro visual style that actually works in email
 - **Magazine-Style Layout** - Boxes and visual sections, not walls of text
 - **Mobile-First Design** - Perfect on iPhone Mail, Outlook mobile, Android Mail
 - **Outlook-Safe HTML** - Uses tables and inline CSS (the only reliable method)
 - **GenEmoji Integration** - Spots for personalized cartoon avatars as section headers
-- **Easy Editing** - Look for `[EDIT THIS]` markers - no coding needed
+- **Easy Editing** - Look for `[EDIT:]` markers - no coding needed
+
+### Advanced Features (New!)
+- **Zig-Zag Cards** - Alternating left/right image-text layout (magazine flow)
+- **Cinemagraph Hero** - Subtle animated GIF header (blinking cursor, shimmer effects)
+- **Scroll Flipbook** - Vertical GIF that creates motion illusion during scroll
+- **Ribbon & Flag Accents** - "NEW", "WIN", "TIP" labels with VML fallbacks for Outlook
+- **Edge-Band Cards** - Color-coded vertical spines for different content types
+- **Tap-to-Reveal Tabs** - Interactive tabs in Apple Mail/iOS, graceful fallback elsewhere
+- **Parallax Split Card** - Diagonal split hero with background image + solid color
+- **Dark Mode Support** - Optimized for dark mode email clients
 
 ## Quick Start (For Non-Coders)
 
@@ -28,16 +39,35 @@ This template was created for weekly AI innovation communication at a law firm. 
 
 ```
 next-gen-newsletter/
-├── templates/              # Main newsletter template
-│   └── newsletter-template.html
-├── examples/              # Sample newsletters with real content
+├── templates/                      # Newsletter templates
+│   ├── newsletter-template.html           # Basic template (original)
+│   └── newsletter-advanced-template.html  # Advanced features template (NEW!)
+├── examples/                       # Sample newsletters with real content
 │   └── issue-001-launch.html
-├── docs/                  # How-to guides
-│   ├── editing-guide.md
-│   └── testing-guide.md
-└── assets/                # Helper files
+├── docs/                          # How-to guides
+│   ├── editing-guide.md               # Non-coder editing instructions
+│   ├── testing-guide.md               # Cross-client testing guide
+│   ├── quick-reference.md             # Copy/paste snippets
+│   ├── advanced-components.md (NEW!)  # Advanced feature documentation
+│   └── asset-creation-guide.md (NEW!) # GIF and image creation guide
+└── assets/                        # Helper files
     └── ascii-art.txt
 ```
+
+## Which Template Should You Use?
+
+**Basic Template** (`newsletter-template.html`):
+- Simpler, faster to edit
+- No GIF assets required
+- Works everywhere without progressive enhancement
+- Good for getting started quickly
+
+**Advanced Template** (`newsletter-advanced-template.html`):
+- All 7 advanced features included
+- Requires creating GIF assets
+- More visually striking
+- Better for standing out in crowded inboxes
+- Recommended once you're comfortable with basics
 
 ## Testing Checklist
 
