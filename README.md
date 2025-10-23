@@ -46,7 +46,7 @@ This template was created for weekly AI innovation communication at a law firm. 
 - **Magazine-Style Layout** - Confident, asymmetric design with pattern overlays
 - **Bold Checkmarks** - Gradient-filled 24px squares with dramatic shadows
 
-### "Bold Magazine v2" - Ultra-Compact Edition ⭐ NEWEST!
+### "Bold Magazine v2" - Ultra-Compact Edition
 - **Single-Line Header Bar** - Compact 60px header with GenEmoji circle and title on same line
 - **ASCII Line Art Borders** - Six different handcrafted border styles framing each card
 - **Larger Sega Grid** - 40px grid boxes with 15% opacity purple lines (unfilled interiors)
@@ -54,6 +54,16 @@ This template was created for weekly AI innovation communication at a law firm. 
 - **Miniaturized Footer** - Compact 15px padding with tighter line spacing
 - **Same Bold Typography** - Maintains 900 weight headings and gradient elements
 - **Magazine Handcraft Feel** - ASCII borders add artisanal, hand-drawn quality
+
+### "Bold Magazine v3" - Narrow Column Edition ⭐ NEWEST!
+- **Narrow Magazine Columns** - 350px card width (vs 480px) for true editorial column feel
+- **Single-Line Title Bars** - Solid gradient bars with emoji cutout and title embedded (white text)
+- **Full 4-Sided Borders** - Complete ASCII art frames: squiggles (∼), zigzag (┬┴), dots (┅), double (═), waves (▀▄), blocks (▓)
+- **Zero Wasted Space** - Content starts immediately under title bar, ultra-tight 10px padding
+- **Offset Zig-Zag Layout** - Cards alternate left/right alignment like magazine spreads
+- **Diagonal Accents** - Triangle corners, stripe bars, angled overlays throughout
+- **Maximum Information Density** - Pack more content vertically while maintaining readability
+- **True Magazine Aesthetic** - Packed layouts, funky borders, artisanal handcrafted feel
 
 ## Quick Start (For Non-Coders)
 
@@ -76,7 +86,8 @@ next-gen-newsletter/
 │   ├── issue-advanced-sample.html      # All 7 features demo
 │   ├── issue-stylish-sample.html       # "Playful Precision" redesign
 │   ├── issue-bold-sample.html          # "Bold Magazine" design
-│   └── issue-bold-v2-sample.html (NEW!) # "Bold Magazine v2" ultra-compact
+│   ├── issue-bold-v2-sample.html       # "Bold Magazine v2" ultra-compact
+│   └── issue-bold-v3-sample.html (NEW!) # "Bold Magazine v3" narrow columns
 ├── docs/                          # How-to guides
 │   ├── editing-guide.md               # Non-coder editing instructions
 │   ├── testing-guide.md               # Cross-client testing guide
@@ -137,7 +148,7 @@ next-gen-newsletter/
 - Pattern overlays and confident asymmetric design
 - **→ Most distinctive, attention-grabbing design**
 
-**Bold v2 Sample** (`examples/issue-bold-v2-sample.html`) ⭐ NEWEST!
+**Bold v2 Sample** (`examples/issue-bold-v2-sample.html`):
 - **Ultra-compact refinement of Bold Magazine aesthetic**
 - Single-line header bar (60px) with GenEmoji circle and title inline
 - Six unique ASCII line art border styles (╔═╗, ┏━┓, ╭─╮, ┌─┐, ┎─┒, ▛▀▜)
@@ -146,6 +157,17 @@ next-gen-newsletter/
 - Maintains 900 weight typography and gradient elements
 - Handcrafted magazine feel with maximum information density
 - **→ Most compact, artisanal design - stands out while saving vertical space**
+
+**Bold v3 Sample** (`examples/issue-bold-v3-sample.html`) ⭐ NEWEST!
+- **Narrow magazine column design - true editorial aesthetic**
+- 350px card width creates authentic magazine column proportions
+- Single-line title bars with solid gradients, white text, and emoji cutouts
+- Full 4-sided ASCII borders: squiggles, zigzags, dots, double-lines, waves, blocks
+- Offset left/right alternating layout mimics magazine spreads
+- Zero wasted space: content right under title, 10px padding throughout
+- Diagonal triangle accents, stripe bars, and angled overlays
+- Maximum information density while maintaining scannability
+- **→ Most magazine-like design - packed, funky, artisanal handcrafted feel**
 
 ### How to Use the Samples:
 
