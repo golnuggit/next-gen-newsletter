@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AI Digest #001 - Algorithmic Art Edition</title>
+    <style>
+        /* Dithered background pattern */
+        .dither-bg {
+            background-color: #0a0a0a;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(101, 52, 150, 0.03) 2px, rgba(101, 52, 150, 0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(101, 52, 150, 0.03) 2px, rgba(101, 52, 150, 0.03) 4px);
+        }
+
+        /* Terminal font styling */
+        .terminal {
+            font-family: 'Courier New', 'Courier', monospace;
+        }
+
+        /* Prevent resizing - fixed width */
+        .fixed-container {
+            width: 740px !important;
+            max-width: 740px !important;
+            min-width: 740px !important;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #0a0a0a; font-family: 'Courier New', Courier, monospace;">
+
+<!-- Fixed-width container - NO responsive behavior -->
+<table width="740" cellpadding="0" cellspacing="0" border="0" align="center" class="fixed-container" style="background-color: #0a0a0a; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(101, 52, 150, 0.03) 2px, rgba(101, 52, 150, 0.03) 4px), repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(101, 52, 150, 0.03) 2px, rgba(101, 52, 150, 0.03) 4px);">
+    <tr>
+        <td>
+
+            <!-- Header -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #1a0a2e; border-bottom: 2px solid #653496; margin-bottom: 20px;">
+                <tr>
+                    <td style="padding: 20px; text-align: center;">
+                        <div style="font-size: 28px; font-weight: 900; color: #A58BD4; letter-spacing: 3px; font-family: 'Courier New', monospace;">
+                            ▓▒░ AI DIGEST ░▒▓
+                        </div>
+                        <div style="font-size: 11px; color: #7B52AE; letter-spacing: 2px; margin-top: 8px; font-family: 'Courier New', monospace;">
+                            ISSUE #001 • OCT 25, 2025
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- FRAME 1: Left column with waterfall art on right -->
+            <table width="740" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <!-- Left: Content Column -->
+                    <td width="350" valign="top" style="padding: 10px;">
+                        <!-- Card with dithered border -->
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #1a1a1a; border: 3px solid #653496; box-shadow: 0 0 20px rgba(101, 52, 150, 0.3);">
+                            <tr>
+                                <td>
+                                    <!-- Title bar with emoji -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: linear-gradient(135deg, #653496 0%, #7B52AE 100%); border-bottom: 2px solid #A58BD4;">
+                                        <tr>
+                                            <td width="50" style="padding: 10px;">
+                                                <img src="https://via.placeholder.com/32/FFFFFF/653496?text=🏁" width="32" height="32" style="display: block; border-radius: 50%; border: 2px solid #FFFFFF;">
+                                            </td>
+                                            <td style="padding: 10px; font-family: 'Courier New', monospace;">
+                                                <span style="font-size: 13px; font-weight: 900; color: #FFFFFF; letter-spacing: 1px;">PC GRAND PRIX DEMO</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- Content -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="padding: 15px; font-family: 'Courier New', monospace;">
+                                                <p style="margin: 0 0 10px 0; font-size: 12px; color: #E0E0E0; line-height: 1.6;">
+                                                    > INITIALIZING_DEMO.SYS<br>
+                                                    > LOADING CHROME_AUTOMATION<br>
+                                                    > STATUS: READY
+                                                </p>
+
+                                                <p style="margin: 10px 0; font-size: 11px; color: #A58BD4; line-height: 1.6;">
+                                                    Watch Tim race Claude in real-time browser automation. Zero dependencies. Pure JavaScript magic.
+                                                </p>
+
+                                                <!-- Dithered box -->
+                                                <div style="background: repeating-linear-gradient(45deg, #653496, #653496 1px, #3E1E61 1px, #3E1E61 2px); padding: 10px; margin: 10px 0; border: 1px solid #7B52AE;">
+                                                    <p style="margin: 0; font-size: 10px; color: #FFFFFF; line-height: 1.5;">
+                                                        ✓ NO EXTERNAL LIBS<br>
+                                                        ✓ PURE JS MAGIC<br>
+                                                        ✓ HANDLES DYNAMIC
+                                                    </p>
+                                                </div>
+
+                                                <!-- Terminal button -->
+                                                <table cellpadding="0" cellspacing="0" border="0" style="margin: 10px 0 0 0;">
+                                                    <tr>
+                                                        <td style="background-color: #653496; border: 2px solid #A58BD4; padding: 8px 16px; font-family: 'Courier New', monospace;">
+                                                            <a href="#" style="color: #FFFFFF; text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: 1px;">[WATCH_REPLAY]</a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
+                    <!-- Right: ASCII Waterfall Frame 1 -->
+                    <td width="350" valign="top" style="padding: 10px; font-family: 'Courier New', monospace; font-size: 10px; color: #7B52AE; line-height: 1.1; letter-spacing: 0;">
+<pre style="margin: 0; color: #7B52AE;">
+    ╔═══════════════════╗
+    ║   ▓▓▓▓▓▓▓▓▓▓▓▓   ║
+    ║    ░░░░░░░░░░    ║
+    ║     ▒▒▒▒▒▒▒▒     ║
+    ║      ░░░░░░      ║
+    ║       ▓▓▓▓       ║
+    ║        ░░        ║
+    ║         ▒        ║
+    ║                  ║
+    ║                  ║
+    ║    WATERFALL     ║
+    ║    FRAME 001     ║
+    ║                  ║
+    ║   ~  ~  ~  ~     ║
+    ║  ~ ~ ~ ~ ~ ~     ║
+    ╚═══════════════════╝
+</pre>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- FRAME 2: Right column with waterfall art on left -->
+            <table width="740" cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;">
+                <tr>
+                    <!-- Left: ASCII Waterfall Frame 2 -->
+                    <td width="350" valign="top" style="padding: 10px; font-family: 'Courier New', monospace; font-size: 10px; color: #653496; line-height: 1.1; letter-spacing: 0;">
+<pre style="margin: 0; color: #653496;">
+    ╔═══════════════════╗
+    ║   ▓▓▓▓▓▓▓▓▓▓▓▓   ║
+    ║    ░░░░░░░░░░    ║
+    ║     ▒▒▒▒▒▒▒▒     ║
+    ║      ░░░░░░      ║
+    ║       ▓▓▓▓       ║
+    ║        ░░        ║
+    ║         ▒        ║
+    ║         ░        ║
+    ║          ▓       ║
+    ║    WATERFALL     ║
+    ║    FRAME 002     ║
+    ║                  ║
+    ║  ~  ~  ~  ~  ~   ║
+    ║ ~ ~ ~ ~ ~ ~ ~    ║
+    ╚═══════════════════╝
+</pre>
+                    </td>
+
+                    <!-- Right: Content Column -->
+                    <td width="350" valign="top" style="padding: 10px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #1a1a1a; border: 3px solid #7B52AE; box-shadow: 0 0 20px rgba(123, 82, 174, 0.3);">
+                            <tr>
+                                <td>
+                                    <!-- Title bar -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: linear-gradient(135deg, #7B52AE 0%, #A58BD4 100%); border-bottom: 2px solid #FFFFFF;">
+                                        <tr>
+                                            <td width="50" style="padding: 10px;">
+                                                <img src="https://via.placeholder.com/32/FFFFFF/7B52AE?text=🏆" width="32" height="32" style="display: block; border-radius: 50%; border: 2px solid #FFFFFF;">
+                                            </td>
+                                            <td style="padding: 10px; font-family: 'Courier New', monospace;">
+                                                <span style="font-size: 13px; font-weight: 900; color: #FFFFFF; letter-spacing: 1px;">PERKINS COIN WINNER</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- Content -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="padding: 15px; text-align: center; font-family: 'Courier New', monospace;">
+                                                <!-- Winner photo -->
+                                                <div style="margin: 0 auto 10px auto;">
+                                                    <img src="https://via.placeholder.com/80/653496/FFFFFF?text=JS" width="80" height="80" style="border-radius: 50%; border: 3px solid #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);">
+                                                </div>
+
+                                                <p style="margin: 10px 0 5px 0; font-size: 14px; font-weight: 900; color: #A58BD4; letter-spacing: 2px;">
+                                                    JESSICA STONE
+                                                </p>
+
+                                                <p style="margin: 5px 0 10px 0; font-size: 11px; color: #E0E0E0; line-height: 1.6;">
+                                                    Built contract clause analyzer using RAG. Flags risky terms in seconds.
+                                                </p>
+
+                                                <!-- Dithered award badge -->
+                                                <div style="display: inline-block; background: repeating-linear-gradient(45deg, #FFD700, #FFD700 2px, #FFA500 2px, #FFA500 4px); border: 2px solid #FFD700; padding: 8px 16px; margin: 10px 0;">
+                                                    <span style="color: #1a0a2e; font-size: 11px; font-weight: 900; letter-spacing: 1px;">⭐ 50 COINS</span>
+                                                </div>
+
+                                                <p style="margin: 10px 0 0 0; font-size: 10px; color: #7B52AE; font-style: italic;">
+                                                    "AI doesn't replace lawyers—<br>it makes them superhuman."
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- FRAME 3: Left column with waterfall art on right -->
+            <table width="740" cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;">
+                <tr>
+                    <!-- Left: Content Column -->
+                    <td width="350" valign="top" style="padding: 10px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #1a1a1a; border: 3px solid #A58BD4; box-shadow: 0 0 20px rgba(165, 139, 212, 0.3);">
+                            <tr>
+                                <td>
+                                    <!-- Title bar -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: linear-gradient(135deg, #3E1E61 0%, #653496 100%); border-bottom: 2px solid #A58BD4;">
+                                        <tr>
+                                            <td width="50" style="padding: 10px;">
+                                                <img src="https://via.placeholder.com/32/FFFFFF/3E1E61?text=💡" width="32" height="32" style="display: block; border-radius: 50%; border: 2px solid #FFFFFF;">
+                                            </td>
+                                            <td style="padding: 10px; font-family: 'Courier New', monospace;">
+                                                <span style="font-size: 13px; font-weight: 900; color: #FFFFFF; letter-spacing: 1px;">PROMPT TIP</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- Content -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="padding: 15px; font-family: 'Courier New', monospace;">
+                                                <p style="margin: 0 0 10px 0; font-size: 12px; color: #E0E0E0; line-height: 1.6;">
+                                                    > TIP: CITATION_MODE.SYS
+                                                </p>
+
+                                                <p style="margin: 10px 0; font-size: 11px; color: #A58BD4; line-height: 1.6;">
+                                                    Always ask Claude to cite sources. Add this to prompts:
+                                                </p>
+
+                                                <!-- Dithered code block -->
+                                                <div style="background-color: #0a0a0a; border-left: 4px solid #653496; border-right: 4px solid #653496; padding: 10px; margin: 10px 0;">
+                                                    <p style="margin: 0; font-size: 10px; color: #A58BD4; line-height: 1.5;">
+                                                        "Include citations<br>
+                                                        with page numbers<br>
+                                                        for every claim."
+                                                    </p>
+                                                </div>
+
+                                                <p style="margin: 10px 0 0 0; font-size: 10px; color: #7B52AE; line-height: 1.5;">
+                                                    Makes output instantly credible for client memos and briefs.
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
+                    <!-- Right: ASCII Waterfall Frame 3 -->
+                    <td width="350" valign="top" style="padding: 10px; font-family: 'Courier New', monospace; font-size: 10px; color: #A58BD4; line-height: 1.1; letter-spacing: 0;">
+<pre style="margin: 0; color: #A58BD4;">
+    ╔═══════════════════╗
+    ║   ▓▓▓▓▓▓▓▓▓▓▓▓   ║
+    ║    ░░░░░░░░░░    ║
+    ║     ▒▒▒▒▒▒▒▒     ║
+    ║      ░░░░░░      ║
+    ║       ▓▓▓▓       ║
+    ║        ░░        ║
+    ║         ▒        ║
+    ║         ░        ║
+    ║          ▓       ║
+    ║          ░       ║
+    ║    WATERFALL     ║
+    ║    FRAME 003     ║
+    ║ ~  ~  ~  ~  ~  ~ ║
+    ║~ ~ ~ ~ ~ ~ ~ ~ ~ ║
+    ╚═══════════════════╝
+</pre>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- FRAME 4: Right column with river art on left -->
+            <table width="740" cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;">
+                <tr>
+                    <!-- Left: ASCII River Frame 4 -->
+                    <td width="350" valign="top" style="padding: 10px; font-family: 'Courier New', monospace; font-size: 10px; color: #653496; line-height: 1.1; letter-spacing: 0;">
+<pre style="margin: 0; color: #653496;">
+    ╔═══════════════════╗
+    ║                  ║
+    ║  ≋≋≋≋≋≋≋≋≋≋≋≋≋≋  ║
+    ║   ≈≈≈≈≈≈≈≈≈≈≈≈   ║
+    ║    ∼∼∼∼∼∼∼∼∼    ║
+    ║   ≈≈≈≈≈≈≈≈≈≈≈≈   ║
+    ║  ≋≋≋≋≋≋≋≋≋≋≋≋≋≋  ║
+    ║   ≈≈≈≈≈≈≈≈≈≈≈≈   ║
+    ║    ∼∼∼∼∼∼∼∼∼    ║
+    ║                  ║
+    ║   FLOWING RIVER  ║
+    ║    FRAME 004     ║
+    ║                  ║
+    ║  ~ ~ ~ ~ ~ ~ ~   ║
+    ║ ~ ~ ~ ~ ~ ~ ~ ~  ║
+    ╚═══════════════════╝
+</pre>
+                    </td>
+
+                    <!-- Right: Content Column -->
+                    <td width="350" valign="top" style="padding: 10px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #1a1a1a; border: 3px solid #653496; box-shadow: 0 0 20px rgba(101, 52, 150, 0.3);">
+                            <tr>
+                                <td>
+                                    <!-- Title bar -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: linear-gradient(135deg, #653496 0%, #3E1E61 100%); border-bottom: 2px solid #7B52AE;">
+                                        <tr>
+                                            <td width="50" style="padding: 10px;">
+                                                <img src="https://via.placeholder.com/32/FFFFFF/653496?text=🚀" width="32" height="32" style="display: block; border-radius: 50%; border: 2px solid #FFFFFF;">
+                                            </td>
+                                            <td style="padding: 10px; font-family: 'Courier New', monospace;">
+                                                <span style="font-size: 13px; font-weight: 900; color: #FFFFFF; letter-spacing: 1px;">PROJECTS</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- Content -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="padding: 15px; font-family: 'Courier New', monospace;">
+                                                <!-- Project 1 -->
+                                                <div style="margin: 0 0 12px 0; background: repeating-linear-gradient(90deg, #0a0a0a, #0a0a0a 1px, #1a1a1a 1px, #1a1a1a 2px); padding: 10px; border-left: 3px solid #653496;">
+                                                    <p style="margin: 0 0 5px 0; font-size: 11px; font-weight: 900; color: #A58BD4; letter-spacing: 1px;">
+                                                        DOC_REVIEW.SYS
+                                                    </p>
+                                                    <p style="margin: 0 0 5px 0; font-size: 10px; color: #E0E0E0; line-height: 1.5;">
+                                                        AI relevance scoring for 10K+ documents
+                                                    </p>
+                                                    <!-- Progress bar -->
+                                                    <div style="background-color: #0a0a0a; height: 8px; border: 1px solid #653496;">
+                                                        <div style="width: 65%; height: 100%; background: repeating-linear-gradient(90deg, #653496, #653496 2px, #7B52AE 2px, #7B52AE 4px);"></div>
+                                                    </div>
+                                                    <p style="margin: 3px 0 0 0; font-size: 9px; color: #7B52AE;">65% COMPLETE</p>
+                                                </div>
+
+                                                <!-- Project 2 -->
+                                                <div style="margin: 0 0 12px 0; background: repeating-linear-gradient(90deg, #0a0a0a, #0a0a0a 1px, #1a1a1a 1px, #1a1a1a 2px); padding: 10px; border-left: 3px solid #7B52AE;">
+                                                    <p style="margin: 0 0 5px 0; font-size: 11px; font-weight: 900; color: #A58BD4; letter-spacing: 1px;">
+                                                        DEPO_BOT.SYS
+                                                    </p>
+                                                    <p style="margin: 0 0 5px 0; font-size: 10px; color: #E0E0E0; line-height: 1.5;">
+                                                        Question lists from transcripts
+                                                    </p>
+                                                    <div style="background-color: #0a0a0a; height: 8px; border: 1px solid #7B52AE;">
+                                                        <div style="width: 40%; height: 100%; background: repeating-linear-gradient(90deg, #7B52AE, #7B52AE 2px, #A58BD4 2px, #A58BD4 4px);"></div>
+                                                    </div>
+                                                    <p style="margin: 3px 0 0 0; font-size: 9px; color: #7B52AE;">40% COMPLETE</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- FRAME 5: Left column with matrix rain art on right -->
+            <table width="740" cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;">
+                <tr>
+                    <!-- Left: Content Column -->
+                    <td width="350" valign="top" style="padding: 10px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #1a1a1a; border: 3px solid #7B52AE; box-shadow: 0 0 20px rgba(123, 82, 174, 0.3);">
+                            <tr>
+                                <td>
+                                    <!-- Title bar -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: linear-gradient(135deg, #A58BD4 0%, #7B52AE 100%); border-bottom: 2px solid #FFFFFF;">
+                                        <tr>
+                                            <td width="50" style="padding: 10px;">
+                                                <img src="https://via.placeholder.com/32/FFFFFF/A58BD4?text=⏱️" width="32" height="32" style="display: block; border-radius: 50%; border: 2px solid #FFFFFF;">
+                                            </td>
+                                            <td style="padding: 10px; font-family: 'Courier New', monospace;">
+                                                <span style="font-size: 13px; font-weight: 900; color: #FFFFFF; letter-spacing: 1px;">5 MIN CHALLENGE</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- Content -->
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td style="padding: 15px; font-family: 'Courier New', monospace;">
+                                                <p style="margin: 0 0 10px 0; font-size: 14px; font-weight: 900; color: #A58BD4; letter-spacing: 2px;">
+                                                    PUT_A_HAT_ON_ME
+                                                </p>
+
+                                                <p style="margin: 10px 0; font-size: 11px; color: #E0E0E0; line-height: 1.6;">
+                                                    Take a photo. Ask Claude to add a hat. Any hat.
+                                                </p>
+
+                                                <!-- Dithered challenge box -->
+                                                <div style="background: repeating-linear-gradient(45deg, #3E1E61, #3E1E61 2px, #653496 2px, #653496 4px); border: 2px dashed #A58BD4; padding: 12px; margin: 10px 0;">
+                                                    <p style="margin: 0 0 5px 0; font-size: 11px; color: #FFFFFF; font-weight: 900; letter-spacing: 1px;">
+                                                        PRIZE: 10 COINS
+                                                    </p>
+                                                    <p style="margin: 0; font-size: 10px; color: #E0E0E0; line-height: 1.5;">
+                                                        First 5 submissions win.<br>
+                                                        Post in #ai-digest Slack.
+                                                    </p>
+                                                </div>
+
+                                                <p style="margin: 10px 0 0 0; font-size: 10px; color: #7B52AE; font-style: italic;">
+                                                    > Try cowboy, wizard, or construction helmet...
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
+                    <!-- Right: ASCII Matrix Rain Frame 5 -->
+                    <td width="350" valign="top" style="padding: 10px; font-family: 'Courier New', monospace; font-size: 10px; color: #7B52AE; line-height: 1.1; letter-spacing: 0;">
+<pre style="margin: 0; color: #7B52AE;">
+    ╔═══════════════════╗
+    ║ 1 0 1 0 1 0 1 0  ║
+    ║  0 1 0 1 0 1 0   ║
+    ║ 1 0 1 0 1 0 1 0  ║
+    ║  0 1 0 1 0 1 0   ║
+    ║ 1 0 1 0 1 0 1 0  ║
+    ║  0 1 0 1 0 1 0   ║
+    ║ 1 0 1 0 1 0 1 0  ║
+    ║  0 1 0 1 0 1 0   ║
+    ║ 1 0 1 0 1 0 1 0  ║
+    ║                  ║
+    ║   MATRIX RAIN    ║
+    ║    FRAME 005     ║
+    ║                  ║
+    ║  ~ ~ ~ ~ ~ ~ ~   ║
+    ╚═══════════════════╝
+</pre>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- FRAME 6: Right column with geometric art on left -->
+            <table width="740" cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;">
+                <tr>
+                    <!-- Left: ASCII Geometric Frame 6 -->
+                    <td width="350" valign="top" style="padding: 10px; font-family: 'Courier New', monospace; font-size: 10px; color: #653496; line-height: 1.1; letter-spacing: 0;">
+<pre style="margin: 0; color: #653496;">
+    ╔═══════════════════╗
+    ║       ▲▲▲▲       ║
+    ║      ▲░░░░▲      ║
+    ║     ▲░▒▒▒░▲     ║
+    ║    ▲░▒▓▓▒░▲    ║
+    ║   ▲░▒▓██▓▒░▲   ║
+    ║    ▲░▒▓▓▒░▲    ║
+    ║     ▲░▒▒▒░▲     ║
+    ║      ▲░░░░▲      ║
+    ║       ▲▲▲▲       ║
+    ║                  ║
+    ║   ALGORITHMIC    ║
+    ║   GEOMETRY 006   ║
+    ║                  ║
+    ║  ~ ~ ~ ~ ~ ~ ~   ║
+    ╚═══════════════════╝
+</pre>
+                    </td>
+
+                    <!-- Right: Footer Column -->
+                    <td width="350" valign="top" style="padding: 10px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #1a0a2e; border: 3px solid #A58BD4; box-shadow: 0 0 20px rgba(165, 139, 212, 0.3);">
+                            <tr>
+                                <td style="padding: 20px; text-align: center; font-family: 'Courier New', monospace;">
+                                    <p style="margin: 0 0 15px 0; font-size: 10px; color: #A58BD4; line-height: 1.8; letter-spacing: 1px;">
+                                        > FEEDBACK_--SEND<br>
+                                        > IDEAS_--SUBMIT<br>
+                                        > SLACK_#AI-DIGEST
+                                    </p>
+
+                                    <!-- Dithered divider -->
+                                    <div style="height: 2px; background: repeating-linear-gradient(90deg, #653496, #653496 4px, transparent 4px, transparent 8px); margin: 15px 0;"></div>
+
+                                    <p style="margin: 15px 0 0 0; font-size: 9px; color: #7B52AE; letter-spacing: 1px;">
+                                        ▓▒░ © 2025 AI INNOVATION ░▒▓<br>
+                                        MADE WITH CLAUDE
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Final ASCII Art Frame -->
+            <table width="740" cellpadding="0" cellspacing="0" border="0" style="margin-top: 30px; margin-bottom: 30px;">
+                <tr>
+                    <td style="text-align: center; font-family: 'Courier New', monospace; font-size: 10px; color: #653496; line-height: 1.1;">
+<pre style="margin: 0; color: #653496;">
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓   ║
+║     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     ║
+║      ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒      ║
+║       ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░       ║
+║        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓        ║
+║         ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         ║
+║          ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒          ║
+║           ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░           ║
+║            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓            ║
+║             ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░             ║
+║                                                                   ║
+║               END OF TRANSMISSION • FRAME COMPLETE                ║
+║                                                                   ║
+║   ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~   ║
+║  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~    ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+</pre>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
