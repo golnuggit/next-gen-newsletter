@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Algorithmic River — Lines • Dots • ASCII</title>
+<style>
+  :root{
+    --bg:#f7f7f8; --panel:#ffffff; --ink:#111; --muted:#777; --accent:#0d6efd; --br:12px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+    background:var(--bg); color:var(--ink);
+    display:flex; min-height:100vh; gap:16px; padding:16px;
+  }
+  .panel{
+    width:340px; background:var(--panel); border-radius:var(--br);
+    box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 6px 24px rgba(0,0,0,.08);
+    padding:16px; overflow:auto;
+  }
+  .panel h1{font-size:18px;margin:0 0 8px}
+  .panel p.hint{margin:6px 0 14px;color:var(--muted);font-size:12px}
+  .group{margin:12px 0 18px}
+  .group h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#444;margin:12px 0 8px}
+  label{
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:13px; margin:8px 0 4px; color:#333;
+  }
+  label .val{color:var(--muted); font-variant-numeric: tabular-nums;}
+  input[type=range]{width:100%}
+  input[type=text], input[type=number], select{
+    width:100%; padding:8px 10px; border:1px solid #ddd; border-radius:8px; font-size:14px;
+    background:#fff; color:#111; outline:none;
+  }
+  input[type=checkbox]{transform: translateY(1px);}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  .row-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px}
+  button{
+    appearance:none; border:0; background:var(--accent); color:#fff; border-radius:10px;
+    padding:10px 12px; font-weight:600; cursor:pointer;
+  }
+  button.ghost{background:#e9ecef;color:#111}
+  .stage{
+    flex:1; display:flex; align-items:center; justify-content:center;
+    background:repeating-conic-gradient(#eee 0% 25%, #f8f8f8 0% 50%) 50% / 24px 24px;
+    border-radius:var(--br); position:relative; overflow:auto; padding:10px;
+  }
+  canvas{background:#fff; border-radius:10px; box-shadow:0 2px 14px rgba(0,0,0,.08)}
+  .muted{color:var(--muted)}
+  .inline{display:inline-flex; gap:8px; align-items:center}
+  .hide{display:none}
+  .hr{height:1px;background:#eee;margin:14px 0}
+  .footnote{font-size:12px;color:#666;margin-top:8px}
+</style>
+</head>
+<body>
+  <aside class="panel">
+    <h1>Algorithmic River</h1>
+    <p class="hint">Minimal black‑and‑white river generator. Animate with sliders, then export a tall PNG for your newsletter.</p>
+
+    <div class="group">
+      <h2>Mode</h2>
+      <label>Style</label>
+      <select id="mode">
+        <option value="lines" selected>Lines (flow strokes)</option>
+        <option value="dots">Dots (pixel river)</option>
+        <option value="ascii">ASCII (monospace water)</option>
+      </select>
+      <div id="asciiExtras" class="hide">
+        <label>ASCII character set</label>
+        <input type="text" id="charset" value="~^.-=+*#"/>
+        <label>Character size <span class="val" id="charSizeVal">12 px</span></label>
+        <input type="range" id="charSize" min="8" max="32" step="1" value="12"/>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Look & Flow</h2>
+      <label>Density <span class="val" id="densityVal">60</span></label>
+      <input type="range" id="density" min="1" max="100" step="1" value="60"/>
+
+      <label>Rippling amplitude <span class="val" id="ampVal">15 px</span></label>
+      <input type="range" id="amp" min="0" max="60" step="1" value="15"/>
+
+      <label>Curviness (river bend) <span class="val" id="curvyVal">80 px</span></label>
+      <input type="range" id="curvy" min="0" max="260" step="1" value="80"/>
+
+      <label>River width <span class="val" id="riverWidthVal">180 px</span></label>
+      <input type="range" id="riverWidth" min="20" max="640" step="1" value="180"/>
+
+      <div class="row">
+        <div>
+          <label>Stroke/size <span class="val" id="strokeVal">1.0 px</span></label>
+          <input type="range" id="stroke" min="0.5" max="4" step="0.1" value="1"/>
+        </div>
+        <div>
+          <label>Flow speed <span class="val" id="speedVal">0.40</span></label>
+          <input type="range" id="speed" min="0" max="1.2" step="0.01" value="0.40"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="inline">
+          <input type="checkbox" id="animate" checked />
+          <label for="animate" style="margin:0">Animate</label>
+        </div>
+        <div class="inline">
+          <input type="checkbox" id="invert"/>
+          <label for="invert" style="margin:0">Invert (dark on light / light on dark)</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Canvas</h2>
+      <div class="row">
+        <div>
+          <label>Canvas width (px)</label>
+          <input type="number" id="cw" min="200" max="2000" step="10" value="900"/>
+        </div>
+        <div>
+          <label>Canvas height (px)</label>
+          <input type="number" id="ch" min="200" max="1600" step="10" value="600"/>
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="resizeBtn">Resize</button>
+        <button id="randomize" class="ghost">Randomize seed</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Export static (PNG)</h2>
+      <div class="row">
+        <div>
+          <label>Export width (px)</label>
+          <input type="number" id="expW" min="300" max="2000" step="10" value="900"/>
+        </div>
+        <div>
+          <label>Export height (px)</label>
+          <input type="number" id="expH" min="400" max="16000" step="10" value="4000"/>
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="exportBtn">Export PNG</button>
+        <button id="snapBtn" class="ghost">Snapshot current frame</button>
+      </div>
+      <div class="footnote">
+        For very tall images, keep ≤ <b>16,000px</b> for broad browser support. If you need longer,
+        export multiple slices and stack them in your email template.
+      </div>
+    </div>
+
+    <div class="hr"></div>
+    <div class="group">
+      <h2>Reproducibility</h2>
+      <div class="row">
+        <div>
+          <label>Seed</label>
+          <input type="number" id="seed" value="1337" />
+        </div>
+        <div style="display:flex;align-items:flex-end">
+          <button id="applySeed" class="ghost" style="width:100%">Apply</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="hint">Scrolling a tall exported image in your newsletter will feel like floating downstream ✨</p>
+  </aside>
+
+  <main class="stage">
+    <canvas id="c" width="900" height="600"></canvas>
+  </main>
+
+<script>
+(() => {
+  // ---------- Utilities
+  const $ = sel => document.querySelector(sel);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const lerp = (a,b,t) => a + (b-a)*t;
+  const smoothstep = (e0, e1, x) => {
+    const t = clamp((x - e0)/(e1 - e0), 0, 1); return t*t*(3-2*t);
+  };
+
+  // Seeded lattice hash -> [0,1)
+  function makeLatticeHash(seed){
+    seed |= 0;
+    return function(ix, iy){
+      ix |= 0; iy |= 0;
+      // Mix from Thomas Wang / Murmur-inspired
+      let h = (Math.imul(ix, 0x27d4eb2d) ^ Math.imul(iy, 0x85ebca6b) ^ seed) | 0;
+      h ^= h >>> 15; h = Math.imul(h, 0x2c1b3c6d);
+      h ^= h >>> 12; h = Math.imul(h, 0x297a2d39);
+      h ^= h >>> 15;
+      return (h >>> 0) / 4294967295;
+    };
+  }
+
+  // 2D value noise with quintic fade + bilinear interpolation
+  function makeNoise2(seed){
+    const h = makeLatticeHash(seed);
+    const fade = (t)=> t*t*t*(t*(t*6 - 15)+10); // Perlin's 5th order
+    return function(x, y){
+      const xi = Math.floor(x), yi = Math.floor(y);
+      const xf = x - xi, yf = y - yi;
+      const v00 = h(xi, yi),     v10 = h(xi+1, yi);
+      const v01 = h(xi, yi+1),   v11 = h(xi+1, yi+1);
+      const u = fade(xf), v = fade(yf);
+      const x1 = v00*(1-u) + v10*u;
+      const x2 = v01*(1-u) + v11*u;
+      return x1*(1-v) + x2*v;
+    };
+  }
+
+  // Fractal Brownian Motion (fBm) from value noise
+  function makeFBM(noise2){
+    return function(x, y, octaves=3, gain=0.5, lac=2.0){
+      let amp = 1, freq = 1, sum=0, ampSum=0;
+      for(let i=0;i<octaves;i++){
+        sum += amp * noise2(x*freq, y*freq);
+        ampSum += amp;
+        amp *= gain; freq *= lac;
+      }
+      return sum / ampSum; // normalize to [0,1]
+    };
+  }
+
+  // ---------- DOM / Controls
+  const els = {
+    canvas: $('#c'),
+    mode: $('#mode'),
+    density: $('#density'),
+    amp: $('#amp'),
+    curvy: $('#curvy'),
+    riverWidth: $('#riverWidth'),
+    stroke: $('#stroke'),
+    speed: $('#speed'),
+    animate: $('#animate'),
+    invert: $('#invert'),
+    cw: $('#cw'), ch: $('#ch'),
+    resizeBtn: $('#resizeBtn'),
+    exportBtn: $('#exportBtn'),
+    expW: $('#expW'), expH: $('#expH'),
+    seed: $('#seed'), applySeed: $('#applySeed'), randomize: $('#randomize'),
+    asciiExtras: $('#asciiExtras'), charset: $('#charset'), charSize: $('#charSize'),
+    // value badges
+    densityVal: $('#densityVal'),
+    ampVal: $('#ampVal'),
+    curvyVal: $('#curvyVal'),
+    riverWidthVal: $('#riverWidthVal'),
+    strokeVal: $('#strokeVal'),
+    speedVal: $('#speedVal'),
+    charSizeVal: $('#charSizeVal'),
+    snapBtn: $('#snapBtn')
+  };
+
+  // Show/hide ASCII extras
+  function syncAsciiVisibility(){
+    els.asciiExtras.classList.toggle('hide', els.mode.value !== 'ascii');
+  }
+
+  // Update value bubbles
+  function syncValueBadges(){
+    els.densityVal.textContent = els.density.value;
+    els.ampVal.textContent = `${els.amp.value} px`;
+    els.curvyVal.textContent = `${els.curvy.value} px`;
+    els.riverWidthVal.textContent = `${els.riverWidth.value} px`;
+    els.strokeVal.textContent = `${(+els.stroke.value).toFixed(1)} px`;
+    els.speedVal.textContent = `${(+els.speed.value).toFixed(2)}`;
+    els.charSizeVal.textContent = `${els.charSize.value} px`;
+  }
+
+  // Read settings object
+  function getSettings(){
+    const charsRaw = els.charset.value || "~^.-=+*#";
+    return {
+      mode: els.mode.value,                // 'lines' | 'dots' | 'ascii'
+      density: +els.density.value,         // 1..100
+      rippleAmp: +els.amp.value,           // px
+      curvyAmp: +els.curvy.value,          // px
+      riverWidth: +els.riverWidth.value,   // px
+      stroke: +els.stroke.value,           // px
+      speed: +els.speed.value,             // 0..1.2
+      invert: els.invert.checked,
+      animate: els.animate.checked,
+      seed: (+els.seed.value)|0,
+      chars: [...charsRaw],                // array of characters
+      charSize: +els.charSize.value        // px
+    };
+  }
+
+  // ---------- Drawing
+  const ctx = els.canvas.getContext('2d', {alpha:false});
+  let deviceScale = 1;
+  function resizeCanvas(w, h){
+    // Handle HiDPI
+    const dpr = window.devicePixelRatio || 1;
+    deviceScale = dpr;
+    els.canvas.style.width = w + 'px';
+    els.canvas.style.height = h + 'px';
+    els.canvas.width = Math.round(w * dpr);
+    els.canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resizeCanvas(+els.cw.value, +els.ch.value);
+
+  // Noise instances (reseedable)
+  let noise2 = makeNoise2(+els.seed.value|0);
+  let fbm = makeFBM(noise2);
+
+  function reseed(seedVal){
+    noise2 = makeNoise2(seedVal|0);
+    fbm = makeFBM(noise2);
+  }
+
+  // Core render for a given context and size
+  function renderRiver(ctx, W, H, S, timeSec=0){
+    // Background & ink
+    const bg = S.invert ? '#111' : '#fff';
+    const fg = S.invert ? '#fff' : '#000';
+    ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle = fg; ctx.fillStyle = fg;
+    ctx.lineWidth = S.stroke; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.font = `${S.charSize}px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New",monospace`;
+    ctx.textBaseline = 'top';
+
+    // Density -> grid spacing
+    const dNorm = clamp(S.density/100, 0.01, 1);
+    const step = Math.round(lerp(22, 2, dNorm)); // px grid spacing in both axes
+    const segLen = Math.max(1, Math.round(lerp(step*0.8, step*1.6, 0.5)));
+    const curveFreq = 0.003; // bend frequency (cycles per px)
+    const widthVar = 0.25;   // how much width breathes along y
+    const ripScaleX = 0.010; // spatial scale for FBM
+    const ripScaleY = 0.010;
+
+    const tFlow = timeSec * (S.speed*2.2); // time factor for evolving ripples
+
+    for(let y=0; y<H; y += step){
+      // River path center for this cross-section
+      const centerX = W/2 + S.curvyAmp * Math.sin(y*curveFreq + tFlow*0.8 + S.seed*0.017);
+      const halfW = (S.riverWidth/2) * (1 + widthVar * (fbm(0.0, y*0.008 + tFlow*0.4) - 0.5)*2.0);
+
+      const xStart = Math.max(0, Math.floor(centerX - halfW - step*2));
+      const xEnd   = Math.min(W, Math.ceil (centerX + halfW + step*2));
+
+      for(let x=xStart; x<xEnd; x += step){
+        const dist = Math.abs(x - centerX);
+        if (dist > halfW) continue;
+
+        // Edge falloff (more sparse near the banks)
+        const bandU = 1 - clamp(dist / halfW, 0, 1);
+        const edgeWeight = bandU*bandU; // quadratic emphasis toward center
+
+        // Rippling lateral offset based on FBM + sinusoid
+        const phase =
+          (y*0.06 + tFlow*60) * 0.02 +
+          fbm(x*ripScaleX + 12.3, (y + tFlow*120)*ripScaleY + 17.7, 3) * Math.PI * 2;
+
+        const rippleX = S.rippleAmp * Math.sin(phase);
+
+        if (S.mode === 'lines') {
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(x + rippleX*0.6, y + segLen + edgeWeight*2);
+          ctx.stroke();
+        }
+        else if (S.mode === 'dots') {
+          // Small square "pixels"
+          const jitterX = (fbm(x*0.2+5, y*0.2+11) - 0.5) * Math.min(3, step*0.6);
+          const jitterY = (fbm(x*0.2+29, y*0.2+7) - 0.5) * Math.min(3, step*0.6);
+          const s = Math.max(1, Math.round(S.stroke));
+          ctx.fillRect(
+            x + rippleX*0.4 + jitterX,
+            y + jitterY,
+            s, s
+          );
+        }
+        else { // ASCII
+          const idx = Math.floor(
+            fbm(x*0.05 + 3.1, (y + tFlow*240)*0.05 + 9.7, 3) * S.chars.length
+          ) % S.chars.length;
+          const ch = S.chars[idx] ?? '~';
+          ctx.fillText(ch, x + rippleX*0.4, y);
+        }
+      }
+    }
+  }
+
+  // ---------- Animation Loop
+  let reqId = 0, t0 = 0, last = 0, tAccum = 0;
+  function frame(ts){
+    if(!t0){ t0 = ts; last = ts; }
+    const dt = (ts - last)/1000; last = ts;
+    // cap dt to prevent jumps on tab switch
+    const dtSafe = Math.min(dt, 0.05);
+    const S = getSettings();
+    if(S.animate){
+      tAccum += dtSafe;
+    }
+    const W = Math.round(parseFloat(getComputedStyle(els.canvas).width));
+    const H = Math.round(parseFloat(getComputedStyle(els.canvas).height));
+    renderRiver(ctx, W, H, S, tAccum);
+    reqId = requestAnimationFrame(frame);
+  }
+
+  // ---------- Events
+  // Live updates
+  [
+    els.mode, els.density, els.amp, els.curvy, els.riverWidth, els.stroke, els.speed,
+    els.animate, els.invert, els.charset, els.charSize
+  ].forEach(el => {
+    el.addEventListener('input', () => {
+      syncAsciiVisibility();
+      syncValueBadges();
+      if(!getSettings().animate){ // if paused, redraw immediately
+        const W = Math.round(parseFloat(getComputedStyle(els.canvas).width));
+        const H = Math.round(parseFloat(getComputedStyle(els.canvas).height));
+        renderRiver(ctx, W, H, getSettings(), 0);
+      }
+    });
+  });
+
+  // Resize canvas
+  els.resizeBtn.addEventListener('click', () => {
+    const w = clamp(+els.cw.value || 900, 200, 2000);
+    const h = clamp(+els.ch.value || 600, 200, 1600);
+    resizeCanvas(w, h);
+  });
+
+  // Seed handling
+  els.applySeed.addEventListener('click', () => {
+    const s = (+els.seed.value)|0;
+    reseed(s);
+  });
+  els.randomize.addEventListener('click', () => {
+    const s = (Math.random()*0x7fffffff)|0;
+    els.seed.value = s;
+    reseed(s);
+  });
+
+  // Export tall PNG
+  els.exportBtn.addEventListener('click', () => {
+    const S = getSettings();
+    const outW = clamp(+els.expW.value || 900, 300, 2000);
+    const outH = clamp(+els.expH.value || 4000, 400, 16000);
+
+    // Draw on an offscreen canvas at 1x scale
+    const off = document.createElement('canvas');
+    off.width = outW; off.height = outH;
+    const octx = off.getContext('2d', {alpha:false});
+    // For static export, we freeze time (so vertical scroll maps to phase via y)
+    renderRiver(octx, outW, outH, S, /*timeSec=*/0);
+
+    off.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `river_${S.mode}_${Date.now()}.png`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+    }, 'image/png');
+  });
+
+  // Snapshot current animated frame (canvas size)
+  els.snapBtn.addEventListener('click', () => {
+    const S = getSettings();
+    const W = Math.round(parseFloat(getComputedStyle(els.canvas).width));
+    const H = Math.round(parseFloat(getComputedStyle(els.canvas).height));
+    const off = document.createElement('canvas');
+    off.width = W; off.height = H;
+    const octx = off.getContext('2d', {alpha:false});
+    // Use current animation time (tAccum) for export
+    renderRiver(octx, W, H, S, tAccum);
+    off.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `river_snapshot_${S.mode}_${Date.now()}.png`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+    }, 'image/png');
+  });
+
+  // Init
+  syncAsciiVisibility();
+  syncValueBadges();
+  cancelAnimationFrame(reqId);
+  reqId = requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
