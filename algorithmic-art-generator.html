@@ -9,25 +9,26 @@
         body {
             margin: 0;
             padding: 20px;
-            background-color: #0a0a0a;
+            background-color: #F5F2FA;
             font-family: 'Courier New', monospace;
-            color: #ffffff;
+            color: #1E1E1E;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         #controls {
-            background: #1a1a1a;
+            background: #FFFFFF;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 8px;
+            border: 2px solid #653496;
             max-width: 800px;
             width: 100%;
         }
         h1 {
             margin: 0 0 15px 0;
             font-size: 18px;
-            color: #ffffff;
+            color: #653496;
         }
         .control-group {
             margin: 10px 0;
@@ -36,16 +37,16 @@
             display: inline-block;
             width: 150px;
             font-size: 12px;
-            color: #aaaaaa;
+            color: #3E1E61;
         }
         input[type="range"] {
             width: 200px;
         }
         input[type="number"] {
             width: 80px;
-            background: #0a0a0a;
-            border: 1px solid #444;
-            color: #ffffff;
+            background: #F5F2FA;
+            border: 1px solid #A58BD4;
+            color: #1E1E1E;
             padding: 4px;
             font-family: 'Courier New', monospace;
         }
@@ -58,20 +59,26 @@
             cursor: pointer;
             font-family: 'Courier New', monospace;
             font-size: 12px;
+            border-radius: 4px;
         }
         button:hover {
             background: #7B52AE;
         }
         #canvas-container {
-            border: 2px solid #653496;
-            box-shadow: 0 0 20px rgba(101, 52, 150, 0.3);
+            border: 3px solid #653496;
+            box-shadow: 0 4px 12px rgba(101, 52, 150, 0.3);
+            background: #F5F2FA;
         }
         .instructions {
             margin-top: 20px;
             max-width: 800px;
             font-size: 11px;
-            color: #888;
+            color: #3E1E61;
             line-height: 1.6;
+            background: #FFFFFF;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #A58BD4;
         }
     </style>
 </head>
@@ -87,9 +94,15 @@
         </div>
 
         <div class="control-group">
-            <label>Wave Density:</label>
-            <input type="range" id="density" min="10" max="100" value="30" oninput="updateParams()">
-            <span id="density-val">30</span>
+            <label>Flow Lines:</label>
+            <input type="range" id="lines" min="20" max="200" value="80" oninput="updateParams()">
+            <span id="lines-val">80</span>
+        </div>
+
+        <div class="control-group">
+            <label>Wave Amplitude:</label>
+            <input type="range" id="amplitude" min="5" max="100" value="30" oninput="updateParams()">
+            <span id="amplitude-val">30</span>
         </div>
 
         <div class="control-group">
@@ -99,19 +112,13 @@
         </div>
 
         <div class="control-group">
-            <label>Noise Scale:</label>
-            <input type="range" id="noiseScale" min="0.001" max="0.02" step="0.001" value="0.005" oninput="updateParams()">
-            <span id="noiseScale-val">0.005</span>
+            <label>Line Weight:</label>
+            <input type="range" id="weight" min="1" max="10" value="2" oninput="updateParams()">
+            <span id="weight-val">2</span>
         </div>
 
         <div class="control-group">
-            <label>Dither Intensity:</label>
-            <input type="range" id="dither" min="0" max="50" value="20" oninput="updateParams()">
-            <span id="dither-val">20</span>
-        </div>
-
-        <div class="control-group">
-            <button onclick="saveFrame()">📸 Save Frame (Right-click canvas)</button>
+            <button onclick="saveCanvas('river-frame', 'png')">📸 Download Frame</button>
             <button onclick="toggleAnimation()">⏯️ Toggle Animation</button>
         </div>
     </div>
@@ -119,29 +126,27 @@
     <div id="canvas-container"></div>
 
     <div class="instructions">
-        <p><strong>INSTRUCTIONS:</strong> Adjust parameters to create your perfect river flow. Right-click the canvas and "Save image as..." to capture static frames for your newsletter. Try different seeds for unique variations.</p>
-        <p><strong>CONCEPT:</strong> Minimal flowing river using Perlin noise fields. Limited palette (black/purple/white), dithering for texture, spacious composition. Algorithmic beauty within constraints.</p>
+        <p><strong>INSTRUCTIONS:</strong> Adjust parameters to create your perfect flowing river. Click "Download Frame" to save as PNG, or right-click the canvas and "Save image as..." to capture frames for your newsletter.</p>
+        <p><strong>CONCEPT:</strong> Minimal flowing river using Perlin noise fields. Light purple background, black flowing lines. Simple, elegant, algorithmic beauty.</p>
+        <p><strong>TIP:</strong> Try different seeds (1-9999) for unique variations. Lower line count = more minimal. Higher amplitude = more dramatic curves.</p>
     </div>
 
     <script>
         // Global variables
         let params = {
             seed: 42,
-            density: 30,
+            lines: 80,
+            amplitude: 30,
             speed: 1,
-            noiseScale: 0.005,
-            dither: 20
+            weight: 2
         };
 
         let timeOffset = 0;
         let isAnimating = true;
 
-        // Colors - minimal MEK-inspired palette
-        const COLOR_BG = '#0a0a0a';
-        const COLOR_RIVER_DARK = '#653496';
-        const COLOR_RIVER_MED = '#7B52AE';
-        const COLOR_RIVER_LIGHT = '#A58BD4';
-        const COLOR_FOAM = '#ffffff';
+        // Colors - light purple background with black text
+        const COLOR_BG = '#F5F2FA';      // Light purple/lavender
+        const COLOR_RIVER = '#1E1E1E';   // Black
 
         function setup() {
             let canvas = createCanvas(800, 1200);
@@ -162,79 +167,63 @@
         }
 
         function drawFlowingRiver() {
-            noStroke();
+            stroke(COLOR_RIVER);
+            strokeWeight(params.weight);
+            noFill();
 
-            // Draw flowing river with vertical flow field
-            for (let y = 0; y < height; y += 8) {
-                for (let x = 0; x < width; x += 8) {
-                    // Perlin noise for flow pattern
+            // Draw flowing curved lines across the canvas
+            for (let i = 0; i < params.lines; i++) {
+                let yPos = map(i, 0, params.lines, 50, height - 50);
+
+                beginShape();
+                for (let x = 0; x <= width; x += 5) {
+                    // Use Perlin noise to create smooth flowing curves
                     let noiseVal = noise(
-                        x * params.noiseScale,
-                        y * params.noiseScale,
-                        timeOffset
+                        x * 0.005,
+                        yPos * 0.003,
+                        timeOffset + i * 0.1
                     );
 
-                    // Create river "channel" - stronger in center
-                    let centerDist = abs(x - width/2) / (width/2);
-                    let channelMask = 1 - pow(centerDist, 2);
+                    // Map noise to y-offset
+                    let yOffset = map(noiseVal, 0, 1, -params.amplitude, params.amplitude);
+                    let y = yPos + yOffset;
 
-                    // Combine noise with channel
-                    let flowIntensity = noiseVal * channelMask;
-
-                    // Only draw if above threshold (spacious composition)
-                    if (flowIntensity > 0.3) {
-                        // Dithering effect
-                        let ditherRandom = random(100);
-                        let ditherThreshold = params.dither;
-
-                        if (ditherRandom > ditherThreshold) {
-                            // Choose color based on intensity
-                            let c;
-                            if (flowIntensity > 0.7) {
-                                c = color(COLOR_FOAM);
-                            } else if (flowIntensity > 0.55) {
-                                c = color(COLOR_RIVER_LIGHT);
-                            } else if (flowIntensity > 0.4) {
-                                c = color(COLOR_RIVER_MED);
-                            } else {
-                                c = color(COLOR_RIVER_DARK);
-                            }
-
-                            fill(c);
-                            rect(x, y, 8, 8);
-                        }
-                    }
+                    vertex(x, y);
                 }
+                endShape();
             }
 
-            // Add subtle horizontal flow lines for texture
-            stroke(COLOR_RIVER_DARK);
-            strokeWeight(1);
-            for (let y = 0; y < height; y += 40) {
-                let offsetX = noise(y * 0.01, timeOffset) * 60 - 30;
-                let waveWidth = 200 + noise(y * 0.02) * 300;
-                let centerX = width/2 + offsetX;
+            // Add some vertical flow lines weaving through
+            for (let i = 0; i < 5; i++) {
+                let xPos = map(i, 0, 5, 100, width - 100);
 
-                noFill();
                 beginShape();
-                for (let x = centerX - waveWidth/2; x < centerX + waveWidth/2; x += 5) {
-                    let waveY = y + sin((x - centerX) * 0.05 + timeOffset * 2) * 3;
-                    vertex(x, waveY);
+                for (let y = 0; y <= height; y += 5) {
+                    let noiseVal = noise(
+                        xPos * 0.003,
+                        y * 0.005,
+                        timeOffset + i * 0.2
+                    );
+
+                    let xOffset = map(noiseVal, 0, 1, -20, 20);
+                    let x = xPos + xOffset;
+
+                    vertex(x, y);
                 }
                 endShape();
             }
         }
 
         function updateParams() {
-            params.density = parseInt(document.getElementById('density').value);
+            params.lines = parseInt(document.getElementById('lines').value);
+            params.amplitude = parseInt(document.getElementById('amplitude').value);
             params.speed = parseFloat(document.getElementById('speed').value);
-            params.noiseScale = parseFloat(document.getElementById('noiseScale').value);
-            params.dither = parseInt(document.getElementById('dither').value);
+            params.weight = parseInt(document.getElementById('weight').value);
 
-            document.getElementById('density-val').textContent = params.density;
+            document.getElementById('lines-val').textContent = params.lines;
+            document.getElementById('amplitude-val').textContent = params.amplitude;
             document.getElementById('speed-val').textContent = params.speed;
-            document.getElementById('noiseScale-val').textContent = params.noiseScale;
-            document.getElementById('dither-val').textContent = params.dither;
+            document.getElementById('weight-val').textContent = params.weight;
         }
 
         function updateSeed() {
@@ -242,17 +231,12 @@
             randomSeed(params.seed);
             noiseSeed(params.seed);
             timeOffset = 0;
-            redraw();
         }
 
         function randomSeed() {
             params.seed = Math.floor(Math.random() * 9999) + 1;
             document.getElementById('seed').value = params.seed;
             updateSeed();
-        }
-
-        function saveFrame() {
-            alert('Right-click the canvas below and select "Save image as..." to capture this frame.');
         }
 
         function toggleAnimation() {
