@@ -33,6 +33,10 @@
     width:100%; padding:8px 10px; border:1px solid #ddd; border-radius:8px; font-size:14px;
     background:#fff; color:#111; outline:none;
   }
+  input[type=color]{
+    width:100%; height:40px; padding:4px; border:1px solid #ddd; border-radius:8px;
+    background:#fff; cursor:pointer;
+  }
   input[type=checkbox]{transform: translateY(1px);}
   .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
   .row-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px}
@@ -76,6 +80,20 @@
     </div>
 
     <div class="group">
+      <h2>Colors</h2>
+      <div class="row">
+        <div>
+          <label>Background color</label>
+          <input type="color" id="bgColor" value="#F5F2FA"/>
+        </div>
+        <div>
+          <label>Line/text color</label>
+          <input type="color" id="fgColor" value="#000000"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
       <h2>Look & Flow</h2>
       <label>Density <span class="val" id="densityVal">60</span></label>
       <input type="range" id="density" min="1" max="100" step="1" value="60"/>
@@ -85,6 +103,9 @@
 
       <label>Curviness (river bend) <span class="val" id="curvyVal">80 px</span></label>
       <input type="range" id="curvy" min="0" max="260" step="1" value="80"/>
+
+      <label>Bendiness (S-curve sharpness) <span class="val" id="bendinessVal">1.0x</span></label>
+      <input type="range" id="bendiness" min="0.5" max="5" step="0.1" value="1"/>
 
       <label>River width <span class="val" id="riverWidthVal">180 px</span></label>
       <input type="range" id="riverWidth" min="20" max="640" step="1" value="180"/>
@@ -100,15 +121,9 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="inline">
-          <input type="checkbox" id="animate" checked />
-          <label for="animate" style="margin:0">Animate</label>
-        </div>
-        <div class="inline">
-          <input type="checkbox" id="invert"/>
-          <label for="invert" style="margin:0">Invert (dark on light / light on dark)</label>
-        </div>
+      <div class="inline">
+        <input type="checkbox" id="animate" checked />
+        <label for="animate" style="margin:0">Animate</label>
       </div>
     </div>
 
@@ -233,11 +248,13 @@
     density: $('#density'),
     amp: $('#amp'),
     curvy: $('#curvy'),
+    bendiness: $('#bendiness'),
     riverWidth: $('#riverWidth'),
     stroke: $('#stroke'),
     speed: $('#speed'),
     animate: $('#animate'),
-    invert: $('#invert'),
+    bgColor: $('#bgColor'),
+    fgColor: $('#fgColor'),
     cw: $('#cw'), ch: $('#ch'),
     resizeBtn: $('#resizeBtn'),
     exportBtn: $('#exportBtn'),
@@ -248,6 +265,7 @@
     densityVal: $('#densityVal'),
     ampVal: $('#ampVal'),
     curvyVal: $('#curvyVal'),
+    bendinessVal: $('#bendinessVal'),
     riverWidthVal: $('#riverWidthVal'),
     strokeVal: $('#strokeVal'),
     speedVal: $('#speedVal'),
@@ -265,6 +283,7 @@
     els.densityVal.textContent = els.density.value;
     els.ampVal.textContent = `${els.amp.value} px`;
     els.curvyVal.textContent = `${els.curvy.value} px`;
+    els.bendinessVal.textContent = `${(+els.bendiness.value).toFixed(1)}x`;
     els.riverWidthVal.textContent = `${els.riverWidth.value} px`;
     els.strokeVal.textContent = `${(+els.stroke.value).toFixed(1)} px`;
     els.speedVal.textContent = `${(+els.speed.value).toFixed(2)}`;
@@ -279,10 +298,12 @@
       density: +els.density.value,         // 1..100
       rippleAmp: +els.amp.value,           // px
       curvyAmp: +els.curvy.value,          // px
+      bendiness: +els.bendiness.value,     // 0.5..5
       riverWidth: +els.riverWidth.value,   // px
       stroke: +els.stroke.value,           // px
       speed: +els.speed.value,             // 0..1.2
-      invert: els.invert.checked,
+      bgColor: els.bgColor.value,          // hex color
+      fgColor: els.fgColor.value,          // hex color
       animate: els.animate.checked,
       seed: (+els.seed.value)|0,
       chars: [...charsRaw],                // array of characters
@@ -317,8 +338,8 @@
   // Core render for a given context and size
   function renderRiver(ctx, W, H, S, timeSec=0){
     // Background & ink
-    const bg = S.invert ? '#111' : '#fff';
-    const fg = S.invert ? '#fff' : '#000';
+    const bg = S.bgColor;
+    const fg = S.fgColor;
     ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
     ctx.strokeStyle = fg; ctx.fillStyle = fg;
     ctx.lineWidth = S.stroke; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -329,7 +350,7 @@
     const dNorm = clamp(S.density/100, 0.01, 1);
     const step = Math.round(lerp(22, 2, dNorm)); // px grid spacing in both axes
     const segLen = Math.max(1, Math.round(lerp(step*0.8, step*1.6, 0.5)));
-    const curveFreq = 0.003; // bend frequency (cycles per px)
+    const curveFreq = 0.003 * S.bendiness; // bend frequency (cycles per px) × bendiness
     const widthVar = 0.25;   // how much width breathes along y
     const ripScaleX = 0.010; // spatial scale for FBM
     const ripScaleY = 0.010;
@@ -407,8 +428,8 @@
   // ---------- Events
   // Live updates
   [
-    els.mode, els.density, els.amp, els.curvy, els.riverWidth, els.stroke, els.speed,
-    els.animate, els.invert, els.charset, els.charSize
+    els.mode, els.density, els.amp, els.curvy, els.bendiness, els.riverWidth, els.stroke, els.speed,
+    els.animate, els.bgColor, els.fgColor, els.charset, els.charSize
   ].forEach(el => {
     el.addEventListener('input', () => {
       syncAsciiVisibility();
